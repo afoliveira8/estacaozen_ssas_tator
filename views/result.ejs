@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resultado — Estação Zen Tarot</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>🔮 Resultado do Oráculo</h1>
+      <nav>
+        <a href="/">Início</a>
+        <a href="/planos">Planos</a>
+        <a href="/lgpd">LGPD</a>
+        <% if (user) { %><a href="/membro">Área do Membro</a><% } %>
+      </nav>
+    </header>
+
+    <main class="card">
+      <% if (blocked) { %>
+        <h2>Limite semanal atingido</h2>
+        <p>Você já realizou o número máximo de tiragens do seu plano para esta semana.</p>
+        <p><a href="/planos" class="primary">Conheça o Standard para 3 tiragens semanais</a></p>
+      <% } else { %>
+        <h2>Pergunta</h2>
+        <p class="question">“<%= question %>”</p>
+        <div class="result-grid">
+          <div>
+            <h3>Carta revelada</h3>
+            <div class="card-img">
+              <% if (card) { %>
+                <img src="<%= card.img %>" alt="<%= card.name %>" />
+              <% } else { %>
+                <div class="img-placeholder">Imagem da carta</div>
+              <% } %>
+            </div>
+            <p><strong><%= card ? card.name : 'Carta' %></strong> — <%= (card && card.upright) ? 'direita' : 'invertida' %></p>
+          </div>
+          <div>
+            <h3>Leitura</h3>
+            <p><%= reading %></p>
+            <p class="muted">Signo solar (estimado): <strong><%= sign || '—' %></strong></p>
+          </div>
+        </div>
+        <p class="muted">💡 Leitura curta por ser tirada gratuita semanal. Para leituras detalhadas e histórico, veja os <a href="/planos">planos</a>.</p>
+      <% } %>
+    </main>
+    <footer>
+      <small>© <%= new Date().getFullYear() %> Estação Zen · <a href="/lgpd">LGPD</a></small>
+    </footer>
+  </body>
+</html>

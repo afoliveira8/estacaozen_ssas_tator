@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin — Estação Zen</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header><h1>Admin</h1></header>
+    <main class="card">
+      <table>
+        <thead><tr><th>ID</th><th>E-mail</th><th>Nome</th><th>Plano</th><th>Ações</th></tr></thead>
+        <tbody>
+          <% users.forEach(u=> { %>
+            <tr>
+              <td><%= u.id %></td>
+              <td><%= u.email %></td>
+              <td><%= u.full_name || '—' %></td>
+              <td><span class="badge"><%= u.plan %></span></td>
+              <td>
+                <form method="post" action="/admin/plan" class="inline">
+                  <input type="hidden" name="user_id" value="<%= u.id %>" />
+                  <select name="plan">
+                    <option value="free">free</option>
+                    <option value="standard">standard</option>
+                    <option value="premium_custom">premium_custom</option>
+                  </select>
+                  <button>Salvar</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </main>
+  </body>
+</html>

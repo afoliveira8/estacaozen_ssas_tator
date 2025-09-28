@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Entrar — Estação Zen</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Entrar</h1>
+      <nav>
+        <a href="/">Início</a>
+        <a href="/planos">Planos</a>
+        <a href="/lgpd">LGPD</a>
+      </nav>
+    </header>
+    <main class="card">
+      <% if (typeof error !== 'undefined') { %><p class="error"><%= error %></p><% } %>
+      <form method="post" action="/login" class="stack">
+        <label>E-mail <input name="email" type="email" required /></label>
+        <label>Senha <input name="password" type="password" required minlength="8" /></label>
+        <button class="primary">Entrar</button>
+      </form>
+      <p class="muted">Não tem conta? <a href="/registrar">Criar agora</a></p>
+    </main>
+  </body>
+</html>

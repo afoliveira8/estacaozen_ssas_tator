@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Criar conta — Estação Zen</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Criar conta</h1>
+      <nav>
+        <a href="/">Início</a>
+        <a href="/planos">Planos</a>
+        <a href="/lgpd">LGPD</a>
+      </nav>
+    </header>
+    <main class="card">
+      <% if (typeof error !== 'undefined') { %><p class="error"><%= error %></p><% } %>
+      <form method="post" action="/registrar" class="grid">
+        <label>Nome completo <input name="full_name" required /></label>
+        <label>Data de nascimento <input type="date" name="birth_date" required /></label>
+        <label>E-mail <input name="email" type="email" required /></label>
+        <label>Senha <input name="password" type="password" required minlength="8" placeholder="Mínimo 8 caracteres" /></label>
+        <button class="primary">Criar conta</button>
+      </form>
+      <p class="muted">Ao criar conta, você concorda com nossa <a href="/lgpd">Política de Privacidade (LGPD)</a>.</p>
+    </main>
+  </body>
+</html>

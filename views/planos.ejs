@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Planos — Estação Zen Tarot</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>⭐ Planos e Benefícios</h1>
+      <nav>
+        <a href="/">Início</a>
+        <a href="/planos">Planos</a>
+        <a href="/lgpd">LGPD</a>
+        <% if (user) { %><a href="/membro">Área do Membro</a><% } else { %><a href="/login">Entrar</a><% } %>
+      </nav>
+    </header>
+
+    <main class="pricing">
+      <section class="plan">
+        <h2>Free</h2>
+        <ul>
+          <li>1 pergunta por semana</li>
+          <li>1 tirada (1 carta) por semana</li>
+          <li>Sem histórico</li>
+        </ul>
+        <div class="price">R$ 0/mês</div>
+        <a class="primary" href="/registrar">Começar grátis</a>
+      </section>
+      <section class="plan featured">
+        <h2>Standard</h2>
+        <ul>
+          <li>Até 3 perguntas/semana</li>
+          <li>Tiragens automáticas na semana</li>
+          <li>Histórico das cartas</li>
+          <li>Suporte prioritário por e-mail</li>
+        </ul>
+        <div class="price">R$ 29,90/mês</div>
+        <% if (user) { %>
+          <form method="post" action="/checkout/standard"><button class="primary">Assinar Standard</button></form>
+        <% } else { %>
+          <a class="primary" href="/login">Entrar para assinar</a>
+        <% } %>
+      </section>
+      <section class="plan">
+        <h2>Premium</h2>
+        <ul>
+          <li>Atendimento com taróloga parceira</li>
+          <li>Tempo e preço sob consulta</li>
+          <li>Indicado para questões complexas</li>
+        </ul>
+        <div class="price">Valor sob consulta</div>
+        <form method="post" action="mailto:email@estacaozen.com.br" class="stack">
+          <input required name="nome" placeholder="Nome completo" />
+          <input required type="date" name="nascimento" />
+          <textarea required name="interesse" placeholder="O que deseja saber de Tarot e Astrologia?" rows="4"></textarea>
+          <button>Solicitar atendimento</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <small>© <%= new Date().getFullYear() %> Estação Zen · <a href="/lgpd">LGPD</a></small>
+    </footer>
+  </body>
+</html>

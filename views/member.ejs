@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Área do Membro — Estação Zen</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Minha Conta</h1>
+      <nav>
+        <a href="/">Início</a>
+        <a href="/planos">Planos</a>
+        <a href="/lgpd">LGPD</a>
+      </nav>
+    </header>
+    <main class="card">
+      <h2>Plano atual: <span class="badge"><%= u.plan %></span></h2>
+      <p><% if (u.plan === 'free') { %>Você pode realizar 1 tirada por semana. <a href="/upgrade">Fazer upgrade</a> para Standard (3/semana).<% } else if (u.plan === 'standard') { %>Você pode realizar até 3 tiragens semanais e ver o histórico.<% } else { %>Plano premium personalizado (gerenciado pela equipe).<% } %></p>
+      <hr/>
+      <h3>Dados cadastrais</h3>
+      <p><strong>Nome:</strong> <%= u.full_name || '—' %></p>
+      <p><strong>E-mail:</strong> <%= u.email %></p>
+      <p><strong>Nascimento:</strong> <%= u.birth_date || '—' %></p>
+      <form method="post" action="mailto:email@estacaozen.com.br"><button>Atualizar dados via suporte</button></form>
+      <hr/>
+      <h3>Histórico recente</h3>
+      <% if (history.length === 0) { %>
+        <p class="muted">Você ainda não possui leituras salvas.</p>
+      <% } else { %>
+        <ul class="history">
+          <% history.forEach(h => { %>
+            <li>
+              <div><strong><%= h.card_name_pt %></strong> (<%= h.upright ? 'direita' : 'invertida' %>) — <span class="muted"><%= new Date(h.created_at).toLocaleString() %></span></div>
+              <div class="muted">Pergunta: “<%= h.question %>”</div>
+              <div><%= h.reading_text %></div>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </main>
+  </body>
+</html>

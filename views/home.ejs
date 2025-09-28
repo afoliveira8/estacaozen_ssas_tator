@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Estação Zen — Consulta de Tarot</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>🔮 Estação Zen — Oráculo Semanal</h1>
+      <nav>
+        <a href="/">Início</a>
+        <a href="/planos">Planos</a>
+        <a href="/lgpd">LGPD</a>
+        <% if (user) { %>
+          <a href="/membro">Área do Membro</a>
+          <form method="post" action="/logout" style="display:inline"><button class="linklike">Sair</button></form>
+        <% } else { %>
+          <a href="/login">Entrar</a>
+          <a href="/registrar">Criar conta</a>
+        <% } %>
+      </nav>
+    </header>
+
+    <main class="card">
+      <h2>Faça sua pergunta ao oráculo</h2>
+      <form method="post" action="/consultar" class="grid">
+        <label>Pergunta
+          <input required name="question" maxlength="200" placeholder="Ex.: O que preciso saber sobre meu amor/trabalho/saúde esta semana?" />
+        </label>
+        <label>Nome completo
+          <input required name="full_name" maxlength="120" placeholder="Seu nome" />
+        </label>
+        <label>Data de nascimento
+          <input required type="date" name="birth_date" />
+        </label>
+        <button class="primary">Consultar o Oráculo</button>
+      </form>
+      <p class="muted">🔁 Tirada gratuita: 1x por semana no plano Free. Para mais tiragens, veja os <a href="/planos">planos</a>.</p>
+      
+      <section class="plans-cta">
+        <a class="ghost" href="/planos">⭐ Ver planos e benefícios</a>
+      </section>
+    </main>
+
+    <footer>
+      <small>© <%= new Date().getFullYear() %> Estação Zen · <a href="/lgpd">LGPD</a></small>
+    </footer>
+  </body>
+</html>
